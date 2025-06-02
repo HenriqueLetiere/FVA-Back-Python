@@ -224,7 +224,7 @@ def listarServicosID(id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=49484, debug=True)
 
 cursor.close()
 conexao.close()
