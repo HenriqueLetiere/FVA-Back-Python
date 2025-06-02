@@ -7,6 +7,7 @@ CORS(app)
 
 railway = mysql.connector.connect(
     host='turntable.proxy.rlwy.net',
+    port='49484',
     user='root',
     password='enPMNsBoFjfqnBMyXIgdDHAVNorOSQUF',
     database='funilaria_bdd'
@@ -222,9 +223,8 @@ def listarServicosID(id):
 
 
 
-
 if __name__ == '__main__':
-    app.run(port=49484, debug=True)
+    app.run(debug=True)
 
 cursor.close()
 conexao.close()
