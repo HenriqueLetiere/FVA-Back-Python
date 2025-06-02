@@ -12,7 +12,14 @@ sql = mysql.connector.connect(
     database='funilaria_bdd'
 )
 
-conexao = sql
+railway = mysql.connector.connect(
+    host='turntable.proxy.rlwy.net',
+    user='root',
+    password='enPMNsBoFjfqnBMyXIgdDHAVNorOSQUF',
+    database='funilaria_bdd'
+)
+
+conexao = railway
 cursor = conexao.cursor()
 
 
