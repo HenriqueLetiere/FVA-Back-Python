@@ -5,13 +5,6 @@ import mysql.connector
 app = Flask(__name__)
 CORS(app)
 
-sql = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    password='123456',
-    database='funilaria_bdd'
-)
-
 railway = mysql.connector.connect(
     host='turntable.proxy.rlwy.net',
     user='root',
