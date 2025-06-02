@@ -231,7 +231,7 @@ def listarServicosID(id):
 
 
 if __name__ == '__main__':
-    app.run(port=8080, host='localhost', debug=True)
+    app.run(debug=True)
 
 cursor.close()
 conexao.close()
