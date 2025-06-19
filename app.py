@@ -5,7 +5,7 @@ import mysql.connector
 app = Flask(__name__)
 CORS(app)
 
-def railway():
+def conectarDB():
     return mysql.connector.connect(
         host='turntable.proxy.rlwy.net',
         port='49484',
@@ -23,7 +23,7 @@ def railway():
 @app.route('/clientes', methods=['POST'])
 def criarClientes():
     try:
-        conexao = railway()
+        conexao = conectarDB()
         cursor = conexao.cursor()
         item = request.json
         cursor.execute(f"INSERT INTO clientes (nome, datanasc, rg, cpf, telefone, sexo) VALUES ('{item['nome']}', '{item['datanasc']}', '{item['rg']}', '{item['cpf']}', '{item['telefone']}', '{item['sexo']}')")
@@ -40,7 +40,7 @@ def criarClientes():
 @app.route('/clientes/<int:id>', methods=['PUT'])
 def editarClientes(id):
     try:
-        conexao = railway()
+        conexao = conectarDB()
         cursor = conexao.cursor()
         item = request.json
         cursor.execute(f"UPDATE clientes SET nome='{item['nome']}', datanasc='{item['datanasc']}', rg='{item['rg']}', cpf='{item['cpf']}', telefone='{item['telefone']}', sexo='{item['sexo']}' WHERE id={id}")
@@ -57,7 +57,7 @@ def editarClientes(id):
 @app.route('/clientes/<int:id>', methods=['DELETE'])
 def excluirClientes(id):
     try:
-        conexao = railway()
+        conexao = conectarDB()
         cursor = conexao.cursor()
         cursor.execute(f"DELETE FROM clientes WHERE id={id}")
         conexao.commit()
@@ -73,7 +73,7 @@ def excluirClientes(id):
 @app.route('/clientes', methods=['GET'])
 def listarClientes():
     try:
-        conexao = railway()
+        conexao = conectarDB()
         cursor = conexao.cursor()
         cursor.execute("SELECT * FROM clientes")
         resultado = cursor.fetchall()
@@ -102,7 +102,7 @@ def listarClientes():
 @app.route('/clientes/<int:id>', methods=['GET'])
 def listarClientesID(id):
     try:
-        conexao = railway()
+        conexao = conectarDB()
         cursor = conexao.cursor()
         cursor.execute(f"SELECT * FROM clientes WHERE id={id}")
         resultado = cursor.fetchall()
@@ -135,7 +135,7 @@ def listarClientesID(id):
 @app.route('/veiculos', methods=['POST'])
 def criarVeiculos():
     try:
-        conexao = railway()
+        conexao = conectarDB()
         cursor = conexao.cursor()
         item = request.json
         cursor.execute(f"INSERT INTO veiculos (fabricante, modelo, ano, placa) VALUES ('{item['fabricante']}', '{item['modelo']}', '{item['ano']}', '{item['placa']}')")
@@ -152,7 +152,7 @@ def criarVeiculos():
 @app.route('/veiculos/<int:id>', methods=['PUT'])
 def editarVeiculos(id):
     try:
-        conexao = railway()
+        conexao = conectarDB()
         cursor = conexao.cursor()
         item = request.json
         cursor.execute(f"UPDATE veiculos SET fabricante='{item['fabricante']}', modelo='{item['modelo']}', ano='{item['ano']}', placa='{item['placa']}' WHERE id={id}")
@@ -169,7 +169,7 @@ def editarVeiculos(id):
 @app.route('/veiculos/<int:id>', methods=['DELETE'])
 def excluirVeiculos(id):
     try:
-        conexao = railway()
+        conexao = conectarDB()
         cursor = conexao.cursor()
         cursor.execute(f"DELETE FROM veiculos WHERE id={id}")
         conexao.commit()
@@ -185,7 +185,7 @@ def excluirVeiculos(id):
 @app.route('/veiculos', methods=['GET'])
 def listarVeiculos():
     try:
-        conexao = railway()
+        conexao = conectarDB()
         cursor = conexao.cursor()
         cursor.execute("SELECT * FROM veiculos")
         resultado = cursor.fetchall()
@@ -212,7 +212,7 @@ def listarVeiculos():
 @app.route('/veiculos/<int:id>', methods=['GET'])
 def listarVeiculosID(id):
     try:
-        conexao = railway()
+        conexao = conectarDB()
         cursor = conexao.cursor()
         cursor.execute(f"SELECT * FROM veiculos WHERE id={id}")
         resultado = cursor.fetchall()
@@ -243,7 +243,7 @@ def listarVeiculosID(id):
 @app.route('/servicos', methods=['POST'])
 def criarServicos():
     try:
-        conexao = railway()
+        conexao = conectarDB()
         cursor = conexao.cursor()
         item = request.json
         cursor.execute(f"INSERT INTO servicos (tiposerv, valorserv, dataini, datafim) VALUES ('{item['tiposerv']}', '{item['valorserv']}', '{item['dataini']}', '{item['datafim']}')")
@@ -260,7 +260,7 @@ def criarServicos():
 @app.route('/servicos/<int:id>', methods=['PUT'])
 def editarServicos(id):
     try:
-        conexao = railway()
+        conexao = conectarDB()
         cursor = conexao.cursor()
         item = request.json
         cursor.execute(f"UPDATE servicos SET tiposerv='{item['tiposerv']}', valorserv='{item['valorserv']}', dataini='{item['dataini']}', datafim='{item['datafim']}' WHERE id={id}")
@@ -277,7 +277,7 @@ def editarServicos(id):
 @app.route('/servicos/<int:id>', methods=['DELETE'])
 def excluirServicos(id):
     try:
-        conexao = railway()
+        conexao = conectarDB()
         cursor = conexao.cursor()
         cursor.execute(f"DELETE FROM servicos WHERE id={id}")
         conexao.commit()
@@ -293,7 +293,7 @@ def excluirServicos(id):
 @app.route('/servicos', methods=['GET'])
 def listarServicos():
     try:
-        conexao = railway()
+        conexao = conectarDB()
         cursor = conexao.cursor()
         cursor.execute("SELECT * FROM servicos")
         resultado = cursor.fetchall()
@@ -320,7 +320,7 @@ def listarServicos():
 @app.route('/servicos/<int:id>', methods=['GET'])
 def listarServicosID(id):
     try:
-        conexao = railway()
+        conexao = conectarDB()
         cursor = conexao.cursor()
         cursor.execute(f"SELECT * FROM servicos WHERE id={id}")
         resultado = cursor.fetchall()
